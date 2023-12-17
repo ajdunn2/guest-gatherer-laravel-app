@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\InviteResource\Pages;
 use App\Filament\Resources\InviteResource\RelationManagers;
 use App\Models\Invite;
+use App\Traits\HandlesLocalization;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -12,9 +13,12 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\App;
 
 class InviteResource extends Resource
 {
+    use HandlesLocalization;
+
     protected static ?string $model = Invite::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
