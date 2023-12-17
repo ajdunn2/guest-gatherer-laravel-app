@@ -22,7 +22,6 @@ models:
     title: string:400
     custom_message: string # e.g. Please join us for a celebration of our love
     tags: json nullable # e.g. ['bride's family', 'groom's family']
-    status: enum:replied,pending # e.g. replied, pending
     sent_at: datetime nullable
     replied_at: datetime nullable
     last_replied_at: datetime nullable
@@ -33,14 +32,21 @@ models:
 
   Guest:
     invite_id: id foreign
+    guest_status_id: id foreign
     name: string:400 nullable # e.g. John Doe
     email: string:400 nullable # e.g. john.doe@gmail
     phone: string:400 nullable # e.g. 555-555-5555
-    rsvp_status: enum:yes,no,pending default:pending # e.g. yes, no, maybe
     custom_reply: string:400 nullable # e.g. 'I am allergic to peanuts'
     is_plus_one: boolean # e.g. true, false
     softDeletes: true
     relationships:
       belongsTo: Invite
+      hasOne: GuestStatus
+
+  GuestStatus:
+    name: string:400 nullable # e.g. pending, replied
+    softDeletes: true
+    relationships:
+      hasMany: Guest
 
 seeders: Event, Invite, Guest
