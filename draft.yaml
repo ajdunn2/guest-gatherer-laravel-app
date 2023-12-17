@@ -18,7 +18,7 @@ models:
 
   Invite: # a digital invite for one or more guests
     event_id: id foreign
-    slug: string:400 # random short url for invite link e.g. a9s8d7fz
+    slug: string:400 unique # random short url for invite link e.g. a9s8d7fz
     title: string:400
     custom_message: string # e.g. Please join us for a celebration of our love
     tags: json nullable # e.g. ['bride's family', 'groom's family']
