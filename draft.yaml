@@ -16,7 +16,7 @@ models:
     relationships:
       hasMany: Invite
 
-  Invite: # a digital invite for one or more guests
+  Invite:
     event_id: id foreign
     slug: string:400 unique # random short url for invite link e.g. a9s8d7fz
     title: string:400
@@ -40,8 +40,7 @@ models:
     is_plus_one: boolean # e.g. true, false
     softDeletes: true
     relationships:
-      belongsTo: Invite
-      hasOne: GuestStatus
+      belongsTo: Invite, GuestStatus
 
   GuestStatus:
     name: string:400 nullable # e.g. pending, replied

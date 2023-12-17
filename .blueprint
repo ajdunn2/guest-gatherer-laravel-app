@@ -1,2 +1,22 @@
+created:
+    - database/factories/EventFactory.php
+    - database/factories/InviteFactory.php
+    - database/factories/GuestFactory.php
+    - database/factories/GuestStatusFactory.php
+    - database/migrations/2023_12_17_105439_create_events_table.php
+    - database/migrations/2023_12_17_105440_create_invites_table.php
+    - database/migrations/2023_12_17_105441_create_guests_table.php
+    - database/migrations/2023_12_17_105442_create_guest_statuses_table.php
+    - app/Models/Event.php
+    - app/Models/Invite.php
+    - app/Models/Guest.php
+    - app/Models/GuestStatus.php
+    - database/seeders/EventSeeder.php
+    - database/seeders/InviteSeeder.php
+    - database/seeders/GuestSeeder.php
 models:
     User: { name: string, email: string, email_verified_at: 'datetime nullable', password: string, remember_token: 'string:100 nullable' }
+    Event: { user_id: 'unsigned integer', title: 'string:400', description: 'string nullable', location: 'string nullable', time: 'string nullable', date: 'datetime nullable', category: 'string:400  nullable', tags: 'json nullable', status: 'string:400', default_response_deadline: 'datetime nullable', published: 'datetime nullable', softdeletes: softDeletes, relationships: { hasMany: Invite } }
+    Invite: { event_id: 'id foreign', slug: 'string:400 unique', title: 'string:400', custom_message: string, tags: 'json nullable', sent_at: 'datetime nullable', replied_at: 'datetime nullable', last_replied_at: 'datetime nullable', softdeletes: softDeletes, relationships: { hasMany: Guest, belongsTo: Event } }
+    Guest: { invite_id: 'id foreign', guest_status_id: 'id foreign', name: 'string:400 nullable', email: 'string:400 nullable', phone: 'string:400 nullable', custom_reply: 'string:400 nullable', is_plus_one: boolean, softdeletes: softDeletes, relationships: { belongsTo: 'Invite, GuestStatus' } }
+    GuestStatus: { name: 'string:400 nullable', softdeletes: softDeletes, relationships: { hasMany: Guest } }
