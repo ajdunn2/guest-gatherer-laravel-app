@@ -3,15 +3,15 @@ models:
   Event:
     user_id: unsigned integer # Owner of the event
     title: string:400 # e.g. A & N's wedding
-    description: string:400 nullable # e.g. Join us for a celebration of our love
-    location: string:400 nullable # e.g. 123 Main St, San Francisco, CA 94110
-    time: string:400 nullable # e.g. 6:00pm - 11:00pm
-    date: dateTime nullable # e.g. 2018-10-20T18:00:00Z
+    description: string nullable # e.g. Join us for a celebration of our love
+    location: string nullable # e.g. 123 Main St, San Francisco, CA 94110
+    time: string nullable # e.g. 6:00pm - 11:00pm
+    date: datetime nullable # e.g. 2018-10-20T18:00:00Z
     category: string:400  nullable # e.g. wedding
-    tags: string:400 nullable # e.g. wedding, party
+    tags: json nullable # e.g. ['wedding', 'party']
     status: string:400 # e.g. draft, published
-    default_response_deadline: dateTime nullable
-    published: dateTime nullable
+    default_response_deadline: datetime nullable
+    published: datetime nullable
     softDeletes: true
     relationships:
       hasMany: Invite
@@ -20,9 +20,12 @@ models:
     event_id: id foreign
     slug: string:400 # random short url for invite link e.g. a9s8d7fz
     title: string:400
-    custom_message: string:400 # e.g. Please join us for a celebration of our love
-    status: string:400 # e.g. rsvpd, partial-rsvpd, not-rsvpd
-    sent_at: timestamp nullable
+    custom_message: string # e.g. Please join us for a celebration of our love
+    tags: json nullable # e.g. ['bride's family', 'groom's family']
+    status: enum:replied,pending # e.g. replied, pending
+    sent_at: datetime nullable
+    replied_at: datetime nullable
+    last_replied_at: datetime nullable
     softDeletes: true
     relationships:
       hasMany: Guest
@@ -30,13 +33,12 @@ models:
 
   Guest:
     invite_id: id foreign
-    name: string:400 # e.g. John Doe
-    email: string:400 # e.g. john.doe@gmail
-    phone: string:400 # e.g. 555-555-5555
-    rsvp: string:400 # e.g. yes, no, maybe
-    custom_reply: string:400 # e.g. 'I am allergic to peanuts'
+    name: string:400 nullable # e.g. John Doe
+    email: string:400 nullable # e.g. john.doe@gmail
+    phone: string:400 nullable # e.g. 555-555-5555
+    rsvp_status: enum:yes,no,pending default:pending # e.g. yes, no, maybe
+    custom_reply: string:400 nullable # e.g. 'I am allergic to peanuts'
     is_plus_one: boolean # e.g. true, false
-    published: dateTime
     softDeletes: true
     relationships:
       belongsTo: Invite
