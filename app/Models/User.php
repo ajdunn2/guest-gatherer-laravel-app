@@ -45,8 +45,9 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-//    public function canAccessPanel(Panel $panel): bool
-//    {
-//        return $this->hasVerifiedEmail();
-//    }
+   public function canAccessPanel(Panel $panel): bool
+   {
+       return true;
+       //return $this->hasVerifiedEmail();
+   }
 }
