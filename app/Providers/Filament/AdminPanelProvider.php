@@ -55,7 +55,8 @@ class AdminPanelProvider extends PanelProvider
                 Authenticate::class,
             ])
             ->plugins([
-                \BezhanSalleh\FilamentExceptions\FilamentExceptionsPlugin::make()
+                \BezhanSalleh\FilamentExceptions\FilamentExceptionsPlugin::make(),
+                \Croustibat\FilamentJobsMonitor\FilamentJobsMonitorPlugin::make()
             ])
             ->resources([
                 config('filament-logger.activity_resource')
