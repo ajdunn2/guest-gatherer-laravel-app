@@ -53,6 +53,12 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
+            ])
+            ->plugins([
+                \BezhanSalleh\FilamentExceptions\FilamentExceptionsPlugin::make()
+            ])
+            ->resources([
+                config('filament-logger.activity_resource')
             ]);
     }
 }
