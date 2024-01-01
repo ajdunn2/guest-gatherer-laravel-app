@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5f5a0d5ce6f2c427989405bb3f7169f8",
+    "content-hash": "00bf833b6d8461e1a8af06e833591589",
     "packages": [
         {
             "name": "bezhansalleh/filament-exceptions",
