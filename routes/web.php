@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Livewire\UserDashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Regular user routes
+Route::get('/dashboard', UserDashboard::class);
+
+// Admin routes
+//Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'is_admin']], function () {
+//    Filament::routes();
+//});
