@@ -36,13 +36,19 @@ class InviteResource extends Resource
                 Forms\Components\TextInput::make('title')
                     ->required()
                     ->maxLength(400),
-                Forms\Components\TextInput::make('custom_message')
-                    ->required()
-                    ->maxLength(255),
+                Forms\Components\Textarea::make('custom_message')
+                    ->rows(10)
+                    ->columnSpan('full'),
                 Forms\Components\TextInput::make('tags'),
-                Forms\Components\DateTimePicker::make('sent_at'),
-                Forms\Components\DateTimePicker::make('replied_at'),
-                Forms\Components\DateTimePicker::make('last_replied_at'),
+                Forms\Components\Select::make('language')
+                    ->options([
+                        'en' => 'English',
+                        'fa' => 'Persian',
+                    ])
+                    ->required(),
+                Forms\Components\DateTimePicker::make('sent_at')->disabled(),
+                Forms\Components\DateTimePicker::make('replied_at')->disabled(),
+                Forms\Components\DateTimePicker::make('last_replied_at')->disabled(),
             ]);
     }
 
@@ -57,7 +63,7 @@ class InviteResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('title')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('custom_message')
+                Tables\Columns\TextColumn::make('language')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('sent_at')
                     ->dateTime()

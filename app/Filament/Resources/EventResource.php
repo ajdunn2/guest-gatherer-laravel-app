@@ -21,22 +21,20 @@ class EventResource extends Resource
 
     protected static ?string $model = Event::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-calendar-days';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('user_id')
-                    ->required()
-                    ->numeric(),
                 Forms\Components\TextInput::make('title')
                     ->required()
                     ->maxLength(400),
-                Forms\Components\TextInput::make('description')
-                    ->maxLength(255),
+                Forms\Components\Textarea::make('description')
+                    ->rows(10)
+                    ->columnSpan('full'),
                 Forms\Components\TextInput::make('location')
-                    ->maxLength(255),
+                    ->columnSpan('full'),
                 Forms\Components\TextInput::make('time')
                     ->maxLength(255),
                 Forms\Components\DateTimePicker::make('date'),
@@ -119,5 +117,12 @@ class EventResource extends Resource
             'create' => Pages\CreateEvent::route('/create'),
             'edit' => Pages\EditEvent::route('/{record}/edit'),
         ];
+    }
+
+    protected function mutateFormDataBeforeCreate(array $data): array
+    {
+        $data['user_id'] = auth()->id();
+
+        return $data;
     }
 }
