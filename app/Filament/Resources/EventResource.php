@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\EventResource\Pages;
 use App\Filament\Resources\EventResource\RelationManagers;
+use App\Filament\Widgets\GuestStatusChart;
 use App\Models\Event;
 use App\Traits\HandlesLocalization;
 use Filament\Facades\Filament;
@@ -28,23 +29,28 @@ class EventResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('user_id')
-                    ->disabled()
-                    ->numeric()
-                    ->required()
-                    ->hidden()
-                    ->default(Filament::auth()->id()),
-                Forms\Components\TextInput::make('title')
+                Forms\Components\RichEditor::make('title')
                     ->required()
                     ->maxLength(400),
-                Forms\Components\Textarea::make('description')
-                    ->rows(10)
+                Forms\Components\RichEditor::make('description')
                     ->columnSpan('full'),
                 Forms\Components\TextInput::make('location')
+                    ->columnSpan('full'),
+                Forms\Components\TextInput::make('location_title')
+                    ->columnSpan('full'),
+                Forms\Components\TextInput::make('address')
+                    ->columnSpan('full'),
+                Forms\Components\TextInput::make('google_maps_hyperlink')
+                    ->columnSpan('full'),
+                Forms\Components\TextInput::make('google_maps_embed_one')
+                    ->columnSpan('full'),
+                Forms\Components\TextInput::make('google_maps_embed_two')
                     ->columnSpan('full'),
                 Forms\Components\TextInput::make('time')
                     ->columnSpan('full'),
                 Forms\Components\DatePicker::make('date'),
+                Forms\Components\TextInput::make('google_calendar_link')
+                    ->columnSpan('full'),
                 Forms\Components\TextInput::make('category')
                     ->maxLength(400),
                 Forms\Components\TextInput::make('tags'),
@@ -68,6 +74,8 @@ class EventResource extends Resource
                 Tables\Columns\TextColumn::make('description')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('location')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('address')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('time')
                     ->searchable(),

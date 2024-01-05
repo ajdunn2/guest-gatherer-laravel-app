@@ -33,7 +33,6 @@
 
         {{-- @include('layouts.sidebar') --}}
         <livewire:components.sidebar />
-
     </div>
 </div>
 

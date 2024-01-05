@@ -17,7 +17,12 @@ export default {
         "./vendor/robsontenorio/mary/src/View/Components/**/*.php"
     ],
     theme: {
-        extend: {},
+        extend: [
+            "light"
+        ]
     },
-    plugins: [require("daisyui")],
+    plugins: [
+        require("daisyui"),
+        require('tailwindcss-animated')
+    ],
 }

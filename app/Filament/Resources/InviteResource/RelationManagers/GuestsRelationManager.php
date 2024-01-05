@@ -27,10 +27,9 @@ class GuestsRelationManager extends RelationManager
                     ->email()
                     ->maxLength(400),
                 Forms\Components\TextInput::make('phone')
-                    ->tel()
                     ->maxLength(400),
-                Forms\Components\TextInput::make('custom_reply')
-                    ->maxLength(400),
+                Forms\Components\Textarea::make('custom_reply')
+                    ->columnSpan('full'),
                 Forms\Components\Toggle::make('is_plus_one')
                     ->required(),
             ]);
@@ -42,6 +41,8 @@ class GuestsRelationManager extends RelationManager
             ->recordTitleAttribute('name')
             ->columns([
                 Tables\Columns\TextColumn::make('name'),
+                Tables\Columns\TextColumn::make('guestStatus.name')->label('Guest Name'),
+                Tables\Columns\IconColumn::make('is_plus_one')
             ])
             ->filters([
                 //

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('event_id')->constrained();
             $table->string('slug', 400)->unique();
             $table->string('title', 400);
-            $table->string('custom_message');
+            $table->string('custom_message')->nullable();
             $table->json('tags')->nullable();
             $table->dateTime('sent_at')->nullable();
             $table->dateTime('replied_at')->nullable();

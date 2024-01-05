@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('name', 400)->nullable();
             $table->string('email', 400)->nullable();
             $table->string('phone', 400)->nullable();
-            $table->string('custom_reply', 400)->nullable();
+            $table->text('custom_reply')->nullable();
             $table->boolean('is_plus_one');
             $table->timestamps();
             $table->softDeletes();

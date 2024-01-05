@@ -16,10 +16,10 @@ class GuestStatusesTableSeeder extends Seeder
     {
         $currentTimestamp = Carbon::now();
         DB::table('guest_statuses')->insert([
-            ['id' => 1, 'name' => 'pending', 'created_at' => $currentTimestamp],
-            ['id' => 2, 'name' => 'accepted', 'created_at' => $currentTimestamp],
-            ['id' => 3, 'name' => 'declined', 'created_at' => $currentTimestamp],
-            ['id' => 4, 'name' => 'maybe', 'created_at' => $currentTimestamp],
+            ['id' => 1, 'name' => '⏳ Awaiting Response', 'created_at' => $currentTimestamp],
+            ['id' => 2, 'name' => '✅ Delighted to Attend', 'created_at' => $currentTimestamp],
+            ['id' => 3, 'name' => '❌ Unable to Attend', 'created_at' => $currentTimestamp],
+            ['id' => 4, 'name' => '🤔 Undecided (Will Confirm Later)', 'created_at' => $currentTimestamp],
         ]);
     }
 }

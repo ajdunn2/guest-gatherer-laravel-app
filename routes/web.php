@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Livewire\InviteForm;
 use App\Livewire\UserDashboard;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,14 +15,12 @@ use App\Livewire\UserDashboard;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', UserDashboard::class);
 
-// Regular user routes
-Route::get('/dashboard', UserDashboard::class);
+Route::get('/invite/{slug}', InviteForm::class);
 
-// Admin routes
-//Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'is_admin']], function () {
-//    Filament::routes();
-//});
+// route named 'ical-download'
+Route::get(
+    'ical',
+    [\App\Http\Controllers\EventCal::class, 'calendar']
+    )->name('ical-download');

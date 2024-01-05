@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedInteger('user_id');
             $table->string('title', 400);
-            $table->string('description')->nullable();
-            $table->string('location')->nullable();
+            $table->text('description')->nullable();
+            $table->string('location', 400)->nullable();
             $table->string('time')->nullable();
             $table->date('date')->nullable();
             $table->string('category', 400)->nullable();

@@ -14,6 +14,7 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Facades\App;
+use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
 
 class InviteResource extends Resource
 {
@@ -31,16 +32,19 @@ class InviteResource extends Resource
                     ->relationship('event', 'title')
                     ->required(),
                 Forms\Components\TextInput::make('slug')
+                    ->label('Slug (Short URL)')
                     ->required()
                     ->maxLength(400)
                     ->rules([
                         'regex:/^[a-z0-9-]+$/',
-                        'unique:invites,slug'
                     ])
+                    ->unique(ignorable: fn ($record) => $record)
                     ->rules('regex:/^[a-z0-9-]+$/'),
                 Forms\Components\TextInput::make('title')
+                    ->label('Custom Title')
                     ->required()
-                    ->maxLength(400),
+                    ->maxLength(400)
+                    ->columnSpan('full'),
                 Forms\Components\Textarea::make('custom_message')
                     ->rows(10)
                     ->columnSpan('full'),
@@ -51,7 +55,7 @@ class InviteResource extends Resource
                         'fa' => 'Persian',
                     ])
                     ->required(),
-                Forms\Components\DateTimePicker::make('sent_at')->disabled(),
+                Forms\Components\DateTimePicker::make('sent_at'),
                 Forms\Components\DateTimePicker::make('replied_at')->disabled(),
                 Forms\Components\DateTimePicker::make('last_replied_at')->disabled(),
             ]);

@@ -34,15 +34,15 @@ class GuestResource extends Resource
                     ->relationship('guestStatus', 'name')
                     ->required(),
                 Forms\Components\TextInput::make('name')
-                    ->maxLength(400),
+                    ->maxLength(400)
+                    ->columnSpan('full'),
                 Forms\Components\TextInput::make('email')
                     ->email()
                     ->maxLength(400),
                 Forms\Components\TextInput::make('phone')
-                    ->tel()
                     ->maxLength(400),
-                Forms\Components\TextInput::make('custom_reply')
-                    ->maxLength(400),
+                Forms\Components\TextArea::make('custom_reply')
+                    ->columnSpan('full'),
                 Forms\Components\Toggle::make('is_plus_one')
                     ->required(),
             ]);

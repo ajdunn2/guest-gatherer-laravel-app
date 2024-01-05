@@ -1,7 +1,7 @@
 {
     "name": "ajdunn2/guest-gatherer",
     "type": "project",
-    "description": "The skeleton application for the Laravel framework.",
+    "description": "Event management application using the Laravel framework.",
     "keywords": [
         "laravel",
         "framework"
@@ -9,29 +9,33 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
-        "bezhansalleh/filament-exceptions": "^2.0",
+        "bezhansalleh/filament-exceptions": "^2.1.1",
         "bezhansalleh/filament-language-switch": "^3.0",
-        "croustibat/filament-jobs-monitor": "^2.1",
-        "filament/filament": "^3.1",
+        "croustibat/filament-jobs-monitor": "^2.2",
+        "filament/filament": "^3.2",
         "guzzlehttp/guzzle": "^7.8",
-        "laravel/framework": "^10.39",
+        "laravel/framework": "^10.45",
         "laravel/sanctum": "^3.3",
-        "laravel/tinker": "^2.8",
-        "livewire/livewire": "^3.3",
-        "robsontenorio/mary": "^1.14",
-        "z3d0x/filament-logger": "^0.6.2"
+        "laravel/tinker": "^2.9",
+        "livewire/livewire": "^3.4",
+        "psr/simple-cache": "^3.0",
+        "pxlrbt/filament-excel": "^2.3",
+        "robsontenorio/mary": "^1.22",
+        "simplesoftwareio/simple-qrcode": "~4",
+        "spatie/icalendar-generator": "^2.6",
+        "z3d0x/filament-logger": "^0.6.3"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
         "laravel-lang/common": "^5.4",
         "laravel-shift/blueprint": "^2.9",
-        "laravel/pint": "^1.13",
-        "laravel/sail": "^1.26",
+        "laravel/pint": "^1.14",
+        "laravel/sail": "^1.28",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^7.10",
-        "pestphp/pest": "^2.30",
+        "pestphp/pest": "^2.34",
         "phpunit/phpunit": "^10.5",
-        "spatie/laravel-ignition": "^2.3"
+        "spatie/laravel-ignition": "^2.4"
     },
     "autoload": {
         "files": [

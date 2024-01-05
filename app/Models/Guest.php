@@ -51,6 +51,20 @@ class Guest extends Model
         'is_plus_one' => 'boolean',
     ];
 
+    public static function boot()
+    {
+        parent::boot();
+
+        static::updated(function ($guest) {
+            $invite = $guest->invite;
+            if(empty($invite->replied_at)) {
+                $invite->replied_at = now();
+            }
+            $invite->last_replied_at = now();
+            $invite->save();
+        });
+    }
+
     public function invite(): BelongsTo
     {
         return $this->belongsTo(Invite::class);
