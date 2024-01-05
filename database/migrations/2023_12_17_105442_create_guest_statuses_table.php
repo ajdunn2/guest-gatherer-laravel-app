@@ -15,7 +15,7 @@ return new class extends Migration
 
         Schema::create('guest_statuses', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 400)->nullable();
+            $table->string('name', 400)->nullable(); // 'pending', 'accepted', 'declined', 'maybe'
             $table->timestamps();
             $table->softDeletes();
         });
