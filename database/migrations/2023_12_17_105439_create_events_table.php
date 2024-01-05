@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->string('location')->nullable();
             $table->string('time')->nullable();
-            $table->dateTime('date')->nullable();
+            $table->date('date')->nullable();
             $table->string('category', 400)->nullable();
             $table->json('tags')->nullable();
             $table->string('status', 400);

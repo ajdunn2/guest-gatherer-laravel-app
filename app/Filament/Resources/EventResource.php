@@ -6,6 +6,7 @@ use App\Filament\Resources\EventResource\Pages;
 use App\Filament\Resources\EventResource\RelationManagers;
 use App\Models\Event;
 use App\Traits\HandlesLocalization;
+use Filament\Facades\Filament;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -27,6 +28,12 @@ class EventResource extends Resource
     {
         return $form
             ->schema([
+                Forms\Components\TextInput::make('user_id')
+                    ->disabled()
+                    ->numeric()
+                    ->required()
+                    ->hidden()
+                    ->default(Filament::auth()->id()),
                 Forms\Components\TextInput::make('title')
                     ->required()
                     ->maxLength(400),
@@ -36,8 +43,8 @@ class EventResource extends Resource
                 Forms\Components\TextInput::make('location')
                     ->columnSpan('full'),
                 Forms\Components\TextInput::make('time')
-                    ->maxLength(255),
-                Forms\Components\DateTimePicker::make('date'),
+                    ->columnSpan('full'),
+                Forms\Components\DatePicker::make('date'),
                 Forms\Components\TextInput::make('category')
                     ->maxLength(400),
                 Forms\Components\TextInput::make('tags'),
@@ -117,12 +124,5 @@ class EventResource extends Resource
             'create' => Pages\CreateEvent::route('/create'),
             'edit' => Pages\EditEvent::route('/{record}/edit'),
         ];
-    }
-
-    protected function mutateFormDataBeforeCreate(array $data): array
-    {
-        $data['user_id'] = auth()->id();
-
-        return $data;
     }
 }

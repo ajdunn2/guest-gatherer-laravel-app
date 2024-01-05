@@ -36,6 +36,7 @@ class Invite extends Model
         'slug',
         'title',
         'custom_message',
+        'language',
         'tags',
         'sent_at',
         'replied_at',

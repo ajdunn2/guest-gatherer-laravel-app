@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -54,7 +55,7 @@ class Event extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'date' => 'datetime',
+        'date' => 'date',
         'tags' => 'array',
         'default_response_deadline' => 'datetime',
         'published' => 'datetime',
@@ -63,5 +64,10 @@ class Event extends Model
     public function invites(): HasMany
     {
         return $this->hasMany(Invite::class);
+    }
+
+    public function user(): HasMany
+    {
+        return $this->belongsTo(User::class);
     }
 }
