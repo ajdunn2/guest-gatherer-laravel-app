@@ -32,7 +32,12 @@ class InviteResource extends Resource
                     ->required(),
                 Forms\Components\TextInput::make('slug')
                     ->required()
-                    ->maxLength(400),
+                    ->maxLength(400)
+                    ->rules([
+                        'regex:/^[a-z0-9-]+$/',
+                        'unique:invites,slug'
+                    ])
+                    ->rules('regex:/^[a-z0-9-]+$/'),
                 Forms\Components\TextInput::make('title')
                     ->required()
                     ->maxLength(400),
@@ -56,12 +61,14 @@ class InviteResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('title')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('event.title')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('slug')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('title')
+                Tables\Columns\TextColumn::make('tags')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('language')
                     ->searchable(),
@@ -103,7 +110,7 @@ class InviteResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\GuestsRelationManager::class,
         ];
     }
 

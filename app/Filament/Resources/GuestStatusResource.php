@@ -28,6 +28,7 @@ class GuestStatusResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
+                    ->required()
                     ->maxLength(400),
             ]);
     }
@@ -36,6 +37,8 @@ class GuestStatusResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('id')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
