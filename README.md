@@ -32,4 +32,4 @@ Send personalised invites, track individual RSVPs, and gather dietary or other r
 
 ## For production:
 
-- Build assets: npm run build****
+- Build assets: `npm run build`
